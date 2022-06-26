@@ -14,8 +14,7 @@ tracker_globals(expr, value, ok, visible)
 \item{value}{The result of the evaluated expression.}
 
 \item{ok}{A logical indicating whether it was successfully completed
-or not. (As of R 4.2.1, this is
-\link[base:addTaskCallback]{always TRUE at present}.)}
+or not. (This is \link[base:addTaskCallback]{always TRUE at present}.)}
 
 \item{visible}{A logical indicating whether the result was printed or not.}
 }
@@ -38,4 +37,14 @@ Global variables that are ignored:
 \itemize{
 \item \code{.Random.seed}
 }
+}
+\examples{
+\dontrun{
+addTaskCallback(tracker_globals, name = "Files tracker")
+}
+
+\dontrun{
+addTaskCallback(tracker_globals, name = ".GlobalEnv tracker")
+}
+
 }

@@ -5,8 +5,7 @@
 #' @param value The result of the evaluated expression.
 #'
 #' @param ok A logical indicating whether it was successfully completed
-#' or not. (As of R 4.2.1, this is
-#' \link[base:addTaskCallback]{always TRUE at present}.)
+#' or not. (This is \link[base:addTaskCallback]{always TRUE at present}.)
 #'
 #' @param visible A logical indicating whether the result was printed or not.
 #'
@@ -16,6 +15,11 @@
 #'
 #' @seealso
 #' [base::addTaskCallback()]
+#'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_envvars, name = "Environment-variable tracker")
+#' }
 #'
 #' @export
 tracker_envvars <- local({

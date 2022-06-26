@@ -11,6 +11,11 @@
 #' * `TRUE`: Report only when there is a change in the sinks
 #' * `FALSE`: (default) Report whenever there is an active sink
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_sink, name = "Sink tracker")
+#' }
+#'
 #' @export
 tracker_sink <- local({
   last <- list(n_out = NA_integer_, n_msg = NA_integer_)

@@ -8,6 +8,11 @@
 #'
 #' @return Always TRUE
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_rplots, name = "Rplots tracker")
+#' }
+#'
 #' @importFrom utils file_test
 #' @export
 tracker_rplots <- local({

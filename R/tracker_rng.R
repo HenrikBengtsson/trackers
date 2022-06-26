@@ -9,6 +9,11 @@
 #' Global variables that are monitored:
 #' * `.Random.seed`
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_rng, name = "RNG tracker")
+#' }
+#'
 #' @export
 tracker_rng <- local({
   last <- .GlobalEnv$.Random.seed

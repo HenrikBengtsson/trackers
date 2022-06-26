@@ -12,8 +12,7 @@ tracker_sink(expr, value, ok, visible)
 \item{value}{The result of the evaluated expression.}
 
 \item{ok}{A logical indicating whether it was successfully completed
-or not. (As of R 4.2.1, this is
-\link[base:addTaskCallback]{always TRUE at present}.)}
+or not. (This is \link[base:addTaskCallback]{always TRUE at present}.)}
 
 \item{visible}{A logical indicating whether the result was printed or not.}
 }
@@ -30,4 +29,10 @@ The behavior of this tracker can be configured via R option
 \item \code{TRUE}: Report only when there is a change in the sinks
 \item \code{FALSE}: (default) Report whenever there is an active sink
 }
+}
+\examples{
+\dontrun{
+addTaskCallback(tracker_sink, name = "Sink tracker")
+}
+
 }

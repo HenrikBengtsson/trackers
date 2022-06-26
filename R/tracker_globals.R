@@ -10,6 +10,11 @@
 #' Global variables that are ignored:
 #' * `.Random.seed`
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_globals, name = ".GlobalEnv tracker")
+#' }
+#'
 #' @export
 tracker_globals <- local({
   startup <- TRUE

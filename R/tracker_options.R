@@ -13,6 +13,11 @@
 #' * `ts.eps`
 #' * `ts.S.compat`
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_options, name = "Options tracker")
+#' }
+#'
 #' @export
 tracker_options <- local({
   ## Don't use options() here because other options might be added during

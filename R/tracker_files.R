@@ -7,6 +7,11 @@
 #' @details
 #' Set R option \option{tracker.files} to `FALSE` to disable.
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_globals, name = "Files tracker")
+#' }
+#'
 #' @export
 tracker_globals <- local({
   cache <- list()

@@ -7,6 +7,11 @@
 #' @details:
 #' Set R option \option{tracker.packages} to `FALSE` to disable.
 #'
+#' @examples
+#' \dontrun{
+#' addTaskCallback(tracker_package, name = "Package tracker")
+#' }
+#'
 #' @export
 tracker_package <- local({
   startup <- TRUE

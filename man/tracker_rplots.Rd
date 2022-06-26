@@ -12,8 +12,7 @@ tracker_rplots(expr, value, ok, visible)
 \item{value}{The result of the evaluated expression.}
 
 \item{ok}{A logical indicating whether it was successfully completed
-or not. (As of R 4.2.1, this is
-\link[base:addTaskCallback]{always TRUE at present}.)}
+or not. (This is \link[base:addTaskCallback]{always TRUE at present}.)}
 
 \item{visible}{A logical indicating whether the result was printed or not.}
 }
@@ -24,4 +23,10 @@ Always TRUE
 Look for newly produced \code{Rplots*.pdf} files, which may be produced
 when running in batch mode or when screen devices are not available.
 See \code{?options} and option \code{'device'}.
+}
+\examples{
+\dontrun{
+addTaskCallback(tracker_rplots, name = "Rplots tracker")
+}
+
 }

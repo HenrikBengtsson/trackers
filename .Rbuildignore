@@ -1,0 +1,10 @@
+^[.]git
+^[.]github
+^[.]local
+^docs
+^pkgdown
+^revdep
+^CONDUCT[.]md$
+^CONTRIBUTING[.]md$
+^cran-comments[.]md$
+^README[.]md$

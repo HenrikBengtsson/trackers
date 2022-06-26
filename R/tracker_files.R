@@ -2,7 +2,7 @@
 #'
 #' @inheritParams tracker_envvars
 #'
-#' @return Always TRUE
+#' @inherit tracker_envvars return
 #'
 #' @details
 #' Set R option \option{tracker.files} to `FALSE` to disable.
@@ -13,7 +13,7 @@
 #' }
 #'
 #' @export
-tracker_globals <- local({
+tracker_files <- local({
   cache <- list()
   cache[[getwd()]] <- dir(all.files = TRUE)
   

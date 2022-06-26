@@ -17,7 +17,8 @@ or not. (This is \link[base:addTaskCallback]{always TRUE at present}.)}
 \item{visible}{A logical indicating whether the result was printed or not.}
 }
 \value{
-Always TRUE
+Always TRUE, which is used to tell \code{\link[base:taskCallback]{base::addTaskCallback()}} to keep
+this callback tracker function after it's called.
 }
 \description{
 Warn when packages are loaded or unloaded

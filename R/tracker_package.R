@@ -2,7 +2,7 @@
 #'
 #' @inheritParams tracker_envvars
 #'
-#' @return Always TRUE
+#' @inherit tracker_envvars return
 #'
 #' @details:
 #' Set R option \option{tracker.packages} to `FALSE` to disable.

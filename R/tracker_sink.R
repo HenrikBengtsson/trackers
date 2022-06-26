@@ -2,7 +2,7 @@
 #'
 #' @inheritParams tracker_envvars
 #'
-#' @return Always TRUE
+#' @inherit tracker_envvars return
 #'
 #' @details
 #' The behavior of this tracker can be configured via R option

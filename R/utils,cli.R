@@ -1,8 +1,8 @@
-prefix <- function() {
+cli_prefix <- function() {
   getOption("trackers.prefix", "TRACKER: ")
 }
 
-note <- function(..., prefix = prefix(), dangerous = FALSE) {
+note <- function(..., prefix = cli_prefix(), dangerous = FALSE) {
   msg <- sprintf(...)
   if (dangerous) msg <- paste("[DANGEROUS] ", msg, sep = "")
   msg <- paste(prefix, msg, sep = "")

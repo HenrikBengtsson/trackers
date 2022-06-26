@@ -21,7 +21,7 @@ tracker_rng <- local({
   function(expr, value, ok, visible) {
     curr <- .GlobalEnv$.Random.seed
     if (!identical(curr, last)) {
-      msg <- paste(prefix(), ".Random.seed changed")
+      msg <- paste(cli_prefix(), ".Random.seed changed")
       msg <- cli_blurred(msg)
       message(msg)
       last <<- curr

@@ -41,7 +41,7 @@ tracker_package <- local({
                 paste(sQuote(vars), collapse = ", "))
       }, FUN.VALUE = NA_character_)
       diff <- diff[!is.na(diff)]
-      msg <- paste(prefix(), "loadedNamespaces() changed: ", diff, sep = " ")
+      msg <- paste(cli_prefix(), "loadedNamespaces() changed: ", diff, sep = " ")
       msg <- cli_blurred(msg)
       lapply(msg, FUN = message)
       last <<- curr

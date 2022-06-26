@@ -19,7 +19,7 @@ tracker_rplots <- local({
   prev_files <- NULL
 
   message <- function(msg, ...) {
-    msg <- paste(prefix(), msg, sep = "")
+    msg <- paste(cli_prefix(), msg, sep = "")
     msg <- cli_blurred(msg)
     base::message(msg, ...)
   }

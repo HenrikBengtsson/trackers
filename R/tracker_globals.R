@@ -67,7 +67,7 @@ tracker_globals <- local({
                   paste(sQuote(vars), collapse = ", "))
         }, FUN.VALUE = NA_character_)
         diff <- diff[!is.na(diff)]
-        msg <- paste(prefix(), ".GlobalEnv changed: ", diff, sep = "")
+        msg <- paste(cli_prefix(), ".GlobalEnv changed: ", diff, sep = "")
         msg <- cli_bold(cli_yellow(msg))
         lapply(msg, FUN = message)
       }

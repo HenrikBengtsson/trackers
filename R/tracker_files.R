@@ -36,7 +36,7 @@ tracker_files <- local({
                 paste(sQuote(vars), collapse = ", "))
       }, FUN.VALUE = NA_character_)
       diff <- diff[!is.na(diff)]
-      msg <- paste(prefix(), diff)
+      msg <- paste(cli_prefix(), diff)
       msg <- cli_blurred(msg)
       lapply(msg, FUN = message)
       cache[[pwd]] <<- curr

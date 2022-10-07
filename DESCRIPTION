@@ -1,5 +1,5 @@
 Package: trackers
-Version: 0.0.0-9001
+Version: 0.0.0-9002
 Depends:
     R (>= 4.0.0)
 Imports:
@@ -12,5 +12,5 @@ Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
 Description: Track changes to R options, environment variables, R connections, files, and much more from R.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)

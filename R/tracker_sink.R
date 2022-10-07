@@ -50,7 +50,7 @@ tracker_sink <- local({
     }
 
     if (!is.null(msg)) {
-      msg <- sprintf("%%s\n", cli_prefix(), msg)
+      msg <- sprintf("%s%s\n", cli_prefix(), msg)
       msg <- cli_blurred(msg)
       if (n_msg == 0) {
         ## (a) Output to 'message' stream, unless that is sink:ed

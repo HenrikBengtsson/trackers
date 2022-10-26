@@ -1,4 +1,4 @@
-#' Warn when environment variables have been changed
+#' Warn when locale have been changed
 #'
 #' @param expr The \R \link[base:expression]{expression} called.
 #'
@@ -18,34 +18,42 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_envvars, name = "Environment-variable tracker")
+#' addTaskCallback(tracker_locale, name = "Locale tracker")
 #' }
 #'
 #' @export
-tracker_envvars <- local({
+tracker_locale <- local({
+  parse_locale <- function(x) {
+    x <- unlist(strsplit(x, split = ";", fixed = TRUE))
+    pattern <- "^([^=]+)=(.*)$"
+    names <- gsub(pattern, "\\1", x)
+    values <- gsub(pattern, "\\2", x)
+    structure(values, names = names)
+  }
+  
   last <- NULL
   
   function(expr, value, ok, visible) {
-    current <- as.list(Sys.getenv())
-    
+    current <- parse_locale(Sys.getlocale())
+
     if (!is.null(last) && !is.null(expr)) {
       msg <- NULL
       names <- names(current)
       names_last <- names(last)
 
-      ## Environment variables added?
+      ## Locale components added?
       changed <- setdiff(names, names_last)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Environment variables added: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Locale components added: [n=%d] %s.", length(changed), paste(sprintf("%s=%s", changed, sQuote(current[changed])), collapse = ", ")))
       }
       
-      ## Environment variables removed?
+      ## Locale components removed?
       changed <- setdiff(names_last, names)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Environment variables removed: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Locale components removed: [n=%d] %s.", length(changed), paste(sprintf("%s=%s", changed, sQuote(last[changed])), collapse = ", ")))
       }
       
-      ## Environment variables changed?
+      ## Locale components changed?
       changed <- intersect(names, names_last)
       changed <- setdiff(changed, "prompt")
       
@@ -55,13 +63,14 @@ tracker_envvars <- local({
       }
       changed <- changed[nzchar(changed)]
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Environment variables changed: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Locale components changed: [n=%d] %s.", length(changed), paste(sprintf("%s=%s (was %s)", changed, sQuote(current[changed]), sQuote(last[changed])), collapse = ", ")))
       }
       
       if (length(msg) > 0L) {
         note(paste(msg, collapse = " "))
       }
     }
+    
     last <<- current
     
     TRUE

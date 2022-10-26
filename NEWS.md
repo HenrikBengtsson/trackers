@@ -1,7 +1,9 @@
 # Version (development version)
 
-New Features:
+## New Features
+
+* Added `tracker_locale()`.
 
 * Added `tracker_*()` callback functions formerly part of my personal
-  .Rprofile startup process.
+  `.Rprofile` startup process.
   

@@ -37,7 +37,8 @@ tracker_options <- local({
 
   function(expr, value, ok, visible) {
     current <- options()
-    if (!is.null(last)) {
+    
+    if (!is.null(last) && !is.null(expr)) {
       msg <- NULL
       names <- names(current)
       names_last <- names(last)

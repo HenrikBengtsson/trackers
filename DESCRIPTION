@@ -1,15 +1,15 @@
 Package: trackers
-Version: 0.0.0-9003
+Version: 0.0.0-9004
 Depends:
     R (>= 4.0.0)
 Imports:
     utils
 Suggests:
     crayon
-Title: Track Changes in R
+Title: Track Changes in an Interactive R Session
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
-Description: Track changes to R options, environment variables, R connections, files, and much more from R.
+Description: Track changes to the global enviroment, the state of the random number generator (RNG), R graphics devices, R sinks, files, R options, environment variables, R locale, R packages, and more.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
 RoxygenNote: 7.2.1

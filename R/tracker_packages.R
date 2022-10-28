@@ -9,11 +9,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_package, name = "Package tracker")
+#' addTaskCallback(tracker_packages, name = "Packages tracker")
 #' }
 #'
 #' @export
-tracker_package <- local({
+tracker_packages <- local({
   startup <- TRUE
   last <- loadedNamespaces()
   

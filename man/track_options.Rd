@@ -4,7 +4,13 @@
 \alias{track_options}
 \title{Warn when certain R options have been changed}
 \usage{
-track_options()
+track_options(action = c("on", "off"))
+}
+\arguments{
+\item{action}{(character) Enable or disable tracing.}
+}
+\value{
+Nothing.
 }
 \description{
 Warn when certain R options have been changed

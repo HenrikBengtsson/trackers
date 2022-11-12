@@ -1,6 +1,8 @@
 #' Warn when files are added or removed
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @details
 #' Set R option \option{tracker.files} to `FALSE` to disable.
@@ -11,11 +13,7 @@
 #' }
 #'
 #' @export
-track_files <- function() {
-  addTaskCallback(tracker_files, name = "Files tracker")
-}
-
-tracker_files <- local({
+track_files <- make_task_callback(name = "Files tracker", local({
   cache <- list()
   cache[[getwd()]] <- dir(all.files = TRUE)
   
@@ -45,4 +43,4 @@ tracker_files <- local({
     }
     TRUE
   }
-})
+}))

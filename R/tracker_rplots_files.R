@@ -4,7 +4,9 @@
 #' when running in batch mode or when screen devices are not available.
 #' See `?options` and option `'device'`.
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @examples
 #' \dontrun{
@@ -13,11 +15,7 @@
 #'
 #' @importFrom utils file_test
 #' @export
-track_rplots_files <- function() {
-  addTaskCallback(tracker_rplots_files, name = "Rplots file tracker")
-}
-
-tracker_rplots_files <- local({
+track_rplots_files <- make_task_callback(name = "Rplots file tracker", local({
   prev_files <- NULL
 
   message <- function(msg, ...) {
@@ -71,4 +69,4 @@ tracker_rplots_files <- local({
 
     TRUE
   }
-})
+}))

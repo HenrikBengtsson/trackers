@@ -1,6 +1,8 @@
 #' Warn when packages are loaded or unloaded
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @details:
 #' Set R option \option{tracker.packages} to `FALSE` to disable.
@@ -11,11 +13,7 @@
 #' }
 #'
 #' @export
-track_packages <- function() {
-  addTaskCallback(tracker_packages, name = "Packages tracker")
-}
-
-tracker_packages <- local({
+track_packages <- make_task_callback(name = "Packages tracker", local({
   startup <- TRUE
   last <- loadedNamespaces()
   
@@ -50,4 +48,4 @@ tracker_packages <- local({
     }
     TRUE
   }
-})
+}))

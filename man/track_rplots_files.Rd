@@ -4,7 +4,13 @@
 \alias{track_rplots_files}
 \title{Alert about newly produced Rplots*.pdf files}
 \usage{
-track_rplots_files()
+track_rplots_files(action = c("on", "off"))
+}
+\arguments{
+\item{action}{(character) Enable or disable tracing.}
+}
+\value{
+Nothing.
 }
 \description{
 Look for newly produced \code{Rplots*.pdf} files, which may be produced

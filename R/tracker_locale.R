@@ -1,6 +1,8 @@
 #' Warn when locale have been changed
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @seealso
 #' [base::addTaskCallback()]
@@ -11,12 +13,7 @@
 #' }
 #'
 #' @export
-track_locale <- function() {
-  tracker_locale(NULL)  ## initiate locale tracker
-  addTaskCallback(tracker_locale, name = "Locale tracker")
-}
-
-tracker_locale <- local({
+track_locale <- make_task_callback(name = "Locale tracker", local({
   parse_locale <- function(x) {
     x <- unlist(strsplit(x, split = ";", fixed = TRUE))
     pattern <- "^([^=]+)=(.*)$"
@@ -69,4 +66,4 @@ tracker_locale <- local({
     
     TRUE
   }
-})
+}), init = list(expr = NULL))

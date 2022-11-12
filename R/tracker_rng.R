@@ -1,6 +1,8 @@
 #' Warn when the .Random.seed has changed
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @details
 #'
@@ -13,11 +15,7 @@
 #' }
 #'
 #' @export
-track_rng <- function() {
-  addTaskCallback(tracker_rng, name = "RNG tracker")
-}
-
-tracker_rng <- local({
+track_rng <- make_task_callback(name = "RNG tracker", local({
   last <- .GlobalEnv$.Random.seed
   
   function(expr, value, ok, visible) {
@@ -30,4 +28,4 @@ tracker_rng <- local({
     }
     TRUE
   }
-})
+}))

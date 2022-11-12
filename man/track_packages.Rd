@@ -4,7 +4,13 @@
 \alias{track_packages}
 \title{Warn when packages are loaded or unloaded}
 \usage{
-track_packages()
+track_packages(action = c("on", "off"))
+}
+\arguments{
+\item{action}{(character) Enable or disable tracing.}
+}
+\value{
+Nothing.
 }
 \description{
 Warn when packages are loaded or unloaded

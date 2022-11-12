@@ -4,7 +4,13 @@
 \alias{track_files}
 \title{Warn when files are added or removed}
 \usage{
-track_files()
+track_files(action = c("on", "off"))
+}
+\arguments{
+\item{action}{(character) Enable or disable tracing.}
+}
+\value{
+Nothing.
 }
 \description{
 Warn when files are added or removed

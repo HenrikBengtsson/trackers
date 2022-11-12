@@ -1,6 +1,8 @@
 #' Warn when certain R options have been changed
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @details
 #'
@@ -17,11 +19,7 @@
 #' }
 #'
 #' @export
-track_options <- function() {
-  addTaskCallback(tracker_options, name = "Options tracker")
-}
-
-tracker_options <- local({
+track_options <- make_task_callback(name = "Options tracker", local({
   ## Don't use options() here because other options might be added during
   ## R startup process after this tracker is initiated
   last <- NULL
@@ -84,4 +82,5 @@ tracker_options <- local({
     
     TRUE
   }
-})
+}))
+

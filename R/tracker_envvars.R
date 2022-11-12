@@ -1,5 +1,7 @@
 #' Warn when environment variables have been changed
 #'
+#' @param action (character) Enable or disable tracing.
+#'
 #' @return
 #' Nothing.
 #'
@@ -12,11 +14,7 @@
 #' }
 #'
 #' @export
-track_envvars <- function() {
-  addTaskCallback(tracker_envvars, name = "Environment variables tracker")
-}
-
-tracker_envvars <- local({
+track_envvars <- make_task_callback(name = "Environment variables tracker", local({
   last <- NULL
   
   function(expr, value, ok, visible) {
@@ -60,4 +58,4 @@ tracker_envvars <- local({
     
     TRUE
   }
-})
+}))

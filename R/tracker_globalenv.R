@@ -1,6 +1,8 @@
 #' Warn when objects are added or removed from the global environment
 #'
-#' @inherit tracker_envvars return
+#' @inheritParams track_envvars
+#'
+#' @inherit track_envvars return
 #'
 #' @details
 #' Set R option \option{tracker.globalenv} to `FALSE` to disable.
@@ -14,11 +16,7 @@
 #' }
 #'
 #' @export
-track_globalenv <- function() {
-  addTaskCallback(tracker_globalenv, name = "Global environment tracker")
-}
-
-tracker_globalenv <- local({
+track_globalenv <- make_task_callback(name = "Global environment tracker", local({
   startup <- TRUE
   last <- ls(envir = .GlobalEnv, all.names = TRUE)
   
@@ -78,4 +76,4 @@ tracker_globalenv <- local({
     }
     TRUE
   }
-})
+}))

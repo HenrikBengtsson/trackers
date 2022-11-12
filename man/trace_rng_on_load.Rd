@@ -23,6 +23,4 @@ number generation (RNG) state during load, e.g. when the package's
 \code{.onLoad()} function is called.
 Importantly, currently, it does not detect RNG-state changes when a package
 is \emph{attached}, e.g. when the package's \code{.onAttach()} function is called.
-
-export
 }

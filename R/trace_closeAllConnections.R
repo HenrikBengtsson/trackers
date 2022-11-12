@@ -24,7 +24,7 @@
 #' It can then produce an informative warning or and error.  If an error,
 #' then no connections will be closed.
 #'
-#' export
+#' @export
 trace_closeAllConnections <- function(action = c("error", "warning"), allow = list(base::sys.save.image), enable = TRUE, calls = TRUE) {
   action <- match.arg(action)
   stopifnot(is.logical(enable), length(enable) == 1L, !is.na(enable))

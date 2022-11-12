@@ -13,7 +13,7 @@
 #' Importantly, currently, it does not detect RNG-state changes when a package
 #' is _attached_, e.g. when the package's `.onAttach()` function is called.
 #'
-#' export
+#' @export
 trace_rng_on_load <- function(action = c("on", "off")) {
   action <- match.arg(action)
 
@@ -24,8 +24,16 @@ trace_rng_on_load <- function(action = c("on", "off")) {
   
   if (action == "on") {
     suppressMessages({
-      trace(loadNamespace, where = baseenv(), print = FALSE,
-            at = 1L, tracer = .tracer_rng_on_load)
+      trace(
+        loadNamespace,
+        where = baseenv(),
+        print = FALSE,
+        at = 1L,
+        tracer = local({
+          ns <- getNamespace(.packageName)
+          get(".tracer_rng_on_load", mode = "function", envir = ns)
+        })
+      )
     })
   }
 
@@ -36,9 +44,9 @@ trace_rng_on_load <- function(action = c("on", "off")) {
 .tracer_rng_on_load <- local({
   ## To please R CMD check
   package <- state <- NULL
-  
+
   events <- data.frame(package = character(0L), state = character(0L), seed = character(0L))
-  
+
   function(action = c("enter", "exit", "events"), pkgname = envir[["package"]], digest = TRUE, envir = parent.frame()) {
     action <- match.arg(action)
     

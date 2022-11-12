@@ -2,8 +2,11 @@
 
 ## New Features
 
-* Added `tracker_locale()`.
+* Add `trace_closeAllConnections()` and `trace_rng_on_load()` formerly
+  part of my personal `.Rprofile` startup process.
 
-* Added `tracker_*()` callback functions formerly part of my personal
+* Add `tracker_locale()`.
+
+* Add `tracker_*()` callback functions formerly part of my personal
   `.Rprofile` startup process.
   

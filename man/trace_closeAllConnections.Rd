@@ -39,6 +39,4 @@ better to restart R all along.
 This tracer detects whenever \code{closeAllConnections()} is called.
 It can then produce an informative warning or and error.  If an error,
 then no connections will be closed.
-
-export
 }

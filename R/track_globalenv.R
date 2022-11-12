@@ -22,6 +22,7 @@ track_globalenv <- make_task_callback(name = "Global environment tracker", local
   
   function(expr, value, ok, visible) {
     if (!isTRUE(getOption("tracker.globalenv", TRUE))) return(TRUE)
+    
     curr <- ls(envir = .GlobalEnv, all.names = TRUE)
 
     ## Avoid reporting on changes occuring during startup

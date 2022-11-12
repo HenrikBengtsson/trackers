@@ -5,23 +5,23 @@
 #' @inherit tracker_envvars return
 #'
 #' @details
-#' Set R option \option{tracker.globals} to `FALSE` to disable.
+#' Set R option \option{tracker.globalenv} to `FALSE` to disable.
 #'
 #' Global variables that are ignored:
 #' * `.Random.seed`
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_globals, name = ".GlobalEnv tracker")
+#' addTaskCallback(tracker_globalenv, name = ".GlobalEnv tracker")
 #' }
 #'
 #' @export
-tracker_globals <- local({
+tracker_globalenv <- local({
   startup <- TRUE
   last <- ls(envir = .GlobalEnv, all.names = TRUE)
   
   function(expr, value, ok, visible) {
-    if (!isTRUE(getOption("tracker.globals", TRUE))) return(TRUE)
+    if (!isTRUE(getOption("tracker.globalenv", TRUE))) return(TRUE)
     curr <- ls(envir = .GlobalEnv, all.names = TRUE)
 
     ## Avoid reporting on changes occuring during startup

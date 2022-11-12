@@ -8,7 +8,7 @@
 
 Callback handlers that tracks changes in various states of R:
 
- * `tracker_globals()` - track changes to the global environment
+ * `tracker_globalenv()` - track changes to the global environment
  * `tracker_rng()` - track changes to the state of the random number
    generator (RNG)
  * `tracker_rplot()` - track changes to R graphics devices

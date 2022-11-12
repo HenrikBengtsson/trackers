@@ -10,12 +10,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_rplots, name = "Rplots tracker")
+#' addTaskCallback(tracker_rplots_files, name = "Rplots tracker")
 #' }
 #'
 #' @importFrom utils file_test
 #' @export
-tracker_rplots <- local({
+tracker_rplots_files <- local({
   prev_files <- NULL
 
   message <- function(msg, ...) {

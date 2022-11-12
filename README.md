@@ -11,7 +11,7 @@ Callback handlers that tracks changes in various states of R:
  * `tracker_globalenv()` - track changes to the global environment
  * `tracker_rng()` - track changes to the state of the random number
    generator (RNG)
- * `tracker_rplot()` - track changes to R graphics devices
+ * `tracker_rplots_files()` - detect when `Rplots*.pdf` files are created
  * `tracker_sink()` - track changes in R "output" and "message" sinks
  * `tracker_files()` - track changes in files (only names; not
    content)

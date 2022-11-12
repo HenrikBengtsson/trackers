@@ -1,8 +1,9 @@
 Package: trackers
-Version: 0.0.0-9004
+Version: 0.0.0-9005
 Depends:
     R (>= 4.0.0)
 Imports:
+    digest,
     utils
 Suggests:
     crayon

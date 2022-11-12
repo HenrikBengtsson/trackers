@@ -4,7 +4,7 @@
 \alias{track_sinks}
 \title{Warn when the output or message stream is sinked}
 \usage{
-track_sinks(action = c("on", "off"))
+track_sinks(action = c("on", "off", "init"))
 }
 \arguments{
 \item{action}{(character) Enable or disable tracing.}

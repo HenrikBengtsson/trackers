@@ -4,7 +4,7 @@
 \alias{track_envvars}
 \title{Warn when environment variables have been changed}
 \usage{
-track_envvars(action = c("on", "off"))
+track_envvars(action = c("on", "off", "init"))
 }
 \arguments{
 \item{action}{(character) Enable or disable tracing.}

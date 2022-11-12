@@ -4,7 +4,7 @@
 \alias{track_globalenv}
 \title{Warn when objects are added or removed from the global environment}
 \usage{
-track_globalenv(action = c("on", "off"))
+track_globalenv(action = c("on", "off", "init"))
 }
 \arguments{
 \item{action}{(character) Enable or disable tracing.}

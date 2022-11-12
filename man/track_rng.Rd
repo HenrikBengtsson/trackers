@@ -4,7 +4,7 @@
 \alias{track_rng}
 \title{Warn when the .Random.seed has changed}
 \usage{
-track_rng(action = c("on", "off"))
+track_rng(action = c("on", "off", "init"))
 }
 \arguments{
 \item{action}{(character) Enable or disable tracing.}

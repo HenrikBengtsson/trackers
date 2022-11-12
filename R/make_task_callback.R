@@ -1,10 +1,10 @@
-make_task_callback <- function(task_callback, name, init = NULL) {
+make_task_callback <- function(task_callback, name) {
   id <- NULL
 
   stopifnot(is.function(task_callback))
   stopifnot(is.character(name), length(name) == 1L)
   
-  task_callback_handler <- function(action = c("on", "off")) {
+  task_callback_handler <- function(action = c("on", "off", "init")) {
     action <- match.arg(action)
     if (action == "on") {
       if (is.null(id)) {
@@ -15,12 +15,9 @@ make_task_callback <- function(task_callback, name, init = NULL) {
         removeTaskCallback(id)
         id <<- NULL
       }
+    } else if (action == "init") {
+      do.call(task_callback, args = list(expr = NULL))
     }
-  }
-
-  ## Initiate
-  if (!is.null(init)) {
-    do.call(task_callback, args = init)
   }
 
   task_callback_handler

@@ -22,6 +22,13 @@ track_files <- make_task_callback(name = "Files tracker", local({
     pwd <- getwd()
     last <- cache[[pwd]]
     curr <- dir(all.files = TRUE)
+
+    ## Initialize?
+    if (is.null(expr)) {
+      cache[[pwd]] <<- curr
+      return()
+    }
+    
     if (!identical(curr, last)) {
       diff <- list(
         added   = setdiff(curr, last),
@@ -36,7 +43,7 @@ track_files <- make_task_callback(name = "Files tracker", local({
                 paste(sQuote(vars), collapse = ", "))
       }, FUN.VALUE = NA_character_)
       diff <- diff[!is.na(diff)]
-      msg <- paste(cli_prefix(), diff)
+      msg <- paste(cli_prefix(), diff, sep = "")
       msg <- cli_blurred(msg)
       lapply(msg, FUN = message)
       cache[[pwd]] <<- curr

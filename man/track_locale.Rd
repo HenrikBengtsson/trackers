@@ -4,7 +4,7 @@
 \alias{track_locale}
 \title{Warn when locale have been changed}
 \usage{
-track_locale(action = c("on", "off"))
+track_locale(action = c("on", "off", "init"))
 }
 \arguments{
 \item{action}{(character) Enable or disable tracing.}

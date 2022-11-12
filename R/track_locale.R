@@ -66,4 +66,4 @@ track_locale <- make_task_callback(name = "Locale tracker", local({
     
     TRUE
   }
-}), init = list(expr = NULL))
+}))

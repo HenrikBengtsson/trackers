@@ -1,27 +1,21 @@
 #' Warn when environment variables have been changed
 #'
-#' @param expr The \R \link[base:expression]{expression} called.
-#'
-#' @param value The result of the evaluated expression.
-#'
-#' @param ok A logical indicating whether it was successfully completed
-#' or not. (This is \link[base:addTaskCallback]{always TRUE at present}.)
-#'
-#' @param visible A logical indicating whether the result was printed or not.
-#'
 #' @return
-#' Always TRUE, which is used to tell [base::addTaskCallback()] to keep
-#' this callback tracker function after it's called.
+#' Nothing.
 #'
 #' @seealso
 #' [base::addTaskCallback()]
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_envvars, name = "Environment-variable tracker")
+#' track_envvars()
 #' }
 #'
 #' @export
+track_envvars <- function() {
+  addTaskCallback(tracker_envvars, name = "Environment variables tracker")
+}
+
 tracker_envvars <- local({
   last <- NULL
   

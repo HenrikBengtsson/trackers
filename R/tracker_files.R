@@ -1,7 +1,5 @@
 #' Warn when files are added or removed
 #'
-#' @inheritParams tracker_envvars
-#'
 #' @inherit tracker_envvars return
 #'
 #' @details
@@ -9,10 +7,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_globals, name = "Files tracker")
+#' track_files()
 #' }
 #'
 #' @export
+track_files <- function() {
+  addTaskCallback(tracker_files, name = "Files tracker")
+}
+
 tracker_files <- local({
   cache <- list()
   cache[[getwd()]] <- dir(all.files = TRUE)

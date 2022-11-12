@@ -1,7 +1,5 @@
 #' Warn when the .Random.seed has changed
 #'
-#' @inheritParams tracker_envvars
-#'
 #' @inherit tracker_envvars return
 #'
 #' @details
@@ -11,10 +9,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_rng, name = "RNG tracker")
+#' tracker_rng()
 #' }
 #'
 #' @export
+track_rng <- function() {
+  addTaskCallback(tracker_rng, name = "RNG tracker")
+}
+
 tracker_rng <- local({
   last <- .GlobalEnv$.Random.seed
   

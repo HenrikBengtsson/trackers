@@ -1,7 +1,5 @@
 #' Warn when packages are loaded or unloaded
 #'
-#' @inheritParams tracker_envvars
-#'
 #' @inherit tracker_envvars return
 #'
 #' @details:
@@ -9,10 +7,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_packages, name = "Packages tracker")
+#' track_packages()
 #' }
 #'
 #' @export
+track_packages <- function() {
+  addTaskCallback(tracker_packages, name = "Packages tracker")
+}
+
 tracker_packages <- local({
   startup <- TRUE
   last <- loadedNamespaces()

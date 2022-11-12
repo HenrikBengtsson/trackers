@@ -1,7 +1,5 @@
 #' Warn when the output or message stream is sinked
 #'
-#' @inheritParams tracker_envvars
-#'
 #' @inherit tracker_envvars return
 #'
 #' @details
@@ -13,11 +11,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' addTaskCallback(tracker_sink, name = "Sink tracker")
+#' track_sinks()
 #' }
 #'
 #' @export
-tracker_sink <- local({
+track_sinks <- function() {
+  addTaskCallback(tracker_sinks, name = "Sinks tracker")
+}
+
+tracker_sinks <- local({
   last <- list(n_out = NA_integer_, n_msg = NA_integer_)
 
   function(expr, value, ok, visible) {

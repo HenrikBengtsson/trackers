@@ -10,7 +10,7 @@ Suggests:
 Title: Track Changes in an Interactive R Session
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
-Description: Track changes to the global enviroment, the state of the random number generator (RNG), R graphics devices, R sinks, files, R options, environment variables, R locale, R packages, and more.
+Description: Track changes to the global environment, the state of the random number generator (RNG), R graphics devices, R sinks, files, R options, environment variables, R locale, R packages, and more.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
 RoxygenNote: 7.2.1

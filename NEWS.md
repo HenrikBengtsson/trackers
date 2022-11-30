@@ -1,4 +1,4 @@
-# Version (development version)
+# Version 0.0.1 [2022-11-30]
 
 ## New Features
 
@@ -9,4 +9,4 @@
 
 * Add internal `tracker_*()` callback functions formerly part of my
   personal `.Rprofile` startup process.
-  
+

@@ -1,3 +1,10 @@
+# Version (development version)
+
+## New Features
+
+* Add `trace_rm()` to prevent `rm(list = ls())` calls.
+
+
 # Version 0.0.1 [2022-11-30]
 
 ## New Features

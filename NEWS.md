@@ -2,6 +2,8 @@
 
 ## New Features
 
+* Add `track_connections()`.
+
 * Add `trace_rm()` to prevent `rm(list = ls())` calls.
 
 

@@ -11,8 +11,6 @@
 #'
 #' @export
 track_connections <- make_task_callback(name = "Connections tracker", local({
-  last <- NULL
-
   get_connections <- function() {
     idxs <- getAllConnections()
     con <- lapply(idxs, FUN = function(idx) {
@@ -22,6 +20,8 @@ track_connections <- make_task_callback(name = "Connections tracker", local({
     })
     do.call(rbind, con)
   }
+
+  last <- get_connections()
 
   diff_connections <- function(a, b) {
     a_keys <- unname(apply(a, MARGIN = 1L, FUN = function(con) paste(as.character(con), collapse = ",")))
@@ -40,8 +40,6 @@ track_connections <- make_task_callback(name = "Connections tracker", local({
 
   function(expr, value, ok, visible) {
     curr <- get_connections()
-    if (is.null(last)) last <<- curr
-
     diff <- diff_connections(last, curr)
     msg <- NULL
     for (name in names(diff)) {
@@ -57,7 +55,7 @@ track_connections <- make_task_callback(name = "Connections tracker", local({
       msg <- paste(msg, collapse = " & ");
       n <- nrow(curr) - 3L
       what <- if (n == 1L) "connection" else "connections"
-      msg <- sprintf("%s => Now %d opened %s", msg, n, what)
+      msg <- sprintf("%s => Now %d open %s", msg, n, what)
       msg <- sprintf("%s%s", cli_prefix(), msg)
       msg <- cli_blurred(msg)
       message(msg)

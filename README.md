@@ -28,7 +28,7 @@ called:
  * `trace_closeAllConnections()` - trigger an error or a warning
    whenever `base::closeAllConnections()` is called.
 
- * `trace_on_rng_load()` - generate a warning if the RNG state is
+ * `trace_rng_on_load()` - generate a warning if the RNG state is
    changed from a package being loaded
 
 

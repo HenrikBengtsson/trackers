@@ -49,32 +49,44 @@ trace_rng_on_load <- function(action = c("on", "off")) {
 
   function(action = c("enter", "exit", "events"), pkgname = envir[["package"]], digest = TRUE, envir = parent.frame()) {
     action <- match.arg(action)
+    mdebugf(".tracer_rng_on_load(action = '%s', pkgname = '%s') ...", action, pkgname)
+    on.exit(mdebugf(".tracer_rng_on_load(action = '%s', pkgname = '%s') ... done", action, pkgname))
+
+    pkgs_skip <- c("pkgload")
     
     if (action == "enter") {
       if (is.symbol(pkgname)) pkgname <- as.character(pkgname)
       stopifnot(length(pkgname) == 1L, is.character(pkgname))
-#      message(sprintf("loadNamespace('%s') ...", pkgname))
+      mdebugf("loadNamespace('%s') ...", pkgname)
       ## Already loaded?
       if (pkgname %in% names(events)) return()
+
+      ## Skip?
+      if (pkgname %in% pkgs_skip) return()
 
       seed <- globalenv()[[".Random.seed"]]
       seed <- if (is.null(seed)) "<NULL>" else paste(seed, collapse = ",")
       event <- data.frame(package = pkgname, state = "enter", seed = seed)
       events <<- rbind(events, event)
-#      str(events)
-#      message(sprintf("Recorded events: %s", paste(sprintf("%s:%s", events$package, events$state), collapse = ", ")))
+      mdebugf("Recorded events: %s", paste(sprintf("%s:%s", events$package, events$state), collapse = ", "))
   
       ## Note: Can't use trace(... exit) because loadNamespace() calls
       ## on.exit() internally, which wipes any "exit" tracers.
       setHook(packageEvent(pkgname, "onLoad"), action = "append",
               function(pkgname, ...) {
+                mdebugf('runHook() -> .tracer_rng_on_load(action = "exit", pkgname = "%s") ...', pkgname)
+                on.exit(mdebugf('runHook() -> .tracer_rng_on_load(action = "exit", pkgname = "%s") ... done', pkgname))
                 .tracer_rng_on_load(action = "exit", pkgname = pkgname)
               })
       return(invisible(events))
     } else if (action == "exit") {
       stopifnot(length(pkgname) == 1L, is.character(pkgname))
+      ## Skip?
+      if (pkgname %in% pkgs_skip) return()
+      
       seed <- globalenv()[[".Random.seed"]]
       seed <- if (is.null(seed)) "<NULL>" else paste(seed, collapse = ",")
+      mdebugf(".Random.seed before: %s", seed)
       event <- data.frame(package = pkgname, state = "exit", seed = seed)
 
       ## Find most recent 'enter' event
@@ -84,10 +96,10 @@ trace_rng_on_load <- function(action = c("on", "off")) {
 
       ## Record 'exit' event
       events <<- rbind(events, event)
+      mdebugf("Number of 'events': %d", length(events))
 
       ## Nothing to do? RNG state did not change?
       if (seed == event_enter[["seed"]]) {
-#        message(sprintf("loadNamespace('%s') ... done", pkgname))
         return(invisible())
       }
 
@@ -110,9 +122,11 @@ trace_rng_on_load <- function(action = c("on", "off")) {
         msg <- sprintf("RNG state was updated when loading package %s because of its %s dependency %s", sQuote(pkgname), relationship, sQuote(source))
       }
       warning(msg, call. = FALSE, immediate. = TRUE)
-#      message(sprintf("loadNamespace('%s') ... done", pkgname))
       return(invisible(FALSE))
     } else if (action == "events") {
+      ## Skip?
+      if (pkgname %in% pkgs_skip) return()
+    
       if (digest) {
         events$seed <- vapply(events$seed, FUN.VALUE = NA_character_, FUN = digest)
       }

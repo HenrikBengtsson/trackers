@@ -1,3 +1,12 @@
+# Version 0.0.2 [2024-03-11]
+
+## New Features
+
+* Add `track_connections()`.
+
+* Add `trace_rm()` to prevent `rm(list = ls())` calls.
+
+
 # Version 0.0.1 [2022-11-30]
 
 ## New Features

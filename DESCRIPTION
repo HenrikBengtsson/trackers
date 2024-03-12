@@ -13,5 +13,5 @@ Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
 Description: Track changes to the global environment, the state of the random number generator (RNG), R sinks, files, Rplots.pdf files, R options, environment variables, R locale, R packages, and more.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)

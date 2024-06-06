@@ -1,5 +1,5 @@
 Package: trackers
-Version: 0.0.2
+Version: 0.0.2-9001
 Depends:
     R (>= 4.0.0)
 Imports:

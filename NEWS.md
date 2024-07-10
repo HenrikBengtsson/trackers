@@ -2,6 +2,8 @@
 
 ## New Features
 
+* Add `track_gc()`, which report on changes in `base::gc.time()`.
+
 * Now `track_packages()` also report on changes in attached packages.
 
 

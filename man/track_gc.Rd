@@ -2,18 +2,21 @@
 % Please edit documentation in R/track_gc.R
 \name{track_gc}
 \alias{track_gc}
-\title{Warn when garbage collector has been run}
+\title{Report on garbage collection}
 \usage{
-track_gc(action = c("on", "off", "init"))
+track_gc(threshold = 0, action = c("on", "off", "init"))
 }
 \arguments{
+\item{threshold}{(numeric) Minimum garbage-collection time (in seconds) to
+report on.}
+
 \item{action}{(character) Enable or disable tracking.}
 }
 \value{
 Nothing.
 }
 \description{
-Warn when garbage collector has been run
+Report on garbage collection
 }
 \examples{
 \dontrun{

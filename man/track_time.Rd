@@ -2,22 +2,25 @@
 % Please edit documentation in R/track_time.R
 \name{track_time}
 \alias{track_time}
-\title{Warn when processing time ellapsed}
+\title{Report on processing time}
 \usage{
-track_time(action = c("on", "off", "init"))
+track_time(threshold = 0, action = c("on", "off", "init"))
 }
 \arguments{
+\item{threshold}{(numeric) Minimum processing time (in seconds) to
+report on.}
+
 \item{action}{(character) Enable or disable tracking.}
 }
 \value{
 Nothing.
 }
 \description{
-Warn when processing time ellapsed
+Report on processing time
 }
 \examples{
 \dontrun{
-track_time()
+track_time(threshold = 0.2) # track anything greater than 0.2s
 }
 
 }

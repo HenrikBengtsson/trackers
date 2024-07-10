@@ -1,4 +1,7 @@
-#' Warn when processing time ellapsed
+#' Report on processing time
+#'
+#' @param threshold (numeric) Minimum processing time (in seconds) to
+#' report on.
 #'
 #' @param action (character) Enable or disable tracking.
 #'
@@ -10,14 +13,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' track_time()
+#' track_time(threshold = 0.2) # track anything greater than 0.2s
 #' }
 #'
 #' @export
-track_time <- make_task_callback(name = "Processing time tracker", local({
+track_time <- make_task_callback(name = "Processing time tracker", args = list(threshold = 0.0), local({
   last <- NULL
 
-  function(expr, value, ok, visible) {
+  function(expr, value, ok, visible, data) {
     current <- proc.time()
     
     if (!is.null(last) && !is.null(expr)) {
@@ -26,9 +29,12 @@ track_time <- make_task_callback(name = "Processing time tracker", local({
         names(dt) <- c("user", "system", "elapsed", "user_children", "system_children")
         dt <- dt[-3]
         dt <- dt[dt > 0]
-        info <- paste(sprintf("%s=%gs", names(dt), dt), collapse = ", ")
-        msg <- sprintf("Processing time: %s", info)
-        note(msg)
+        threshold <- data$threshold
+        if (any(dt > threshold)) {
+          info <- paste(sprintf("%s=%gs", names(dt), dt), collapse = ", ")
+          msg <- sprintf("Processing time: %s", info)
+          note(msg)
+        }
       }
       
       current <- proc.time()

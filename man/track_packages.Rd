@@ -2,7 +2,7 @@
 % Please edit documentation in R/track_packages.R
 \name{track_packages}
 \alias{track_packages}
-\title{Warn when packages are loaded or unloaded}
+\title{Warn when packages are loaded/unloaded or attached/detached}
 \usage{
 track_packages(action = c("on", "off", "init"))
 }
@@ -13,7 +13,7 @@ track_packages(action = c("on", "off", "init"))
 Nothing.
 }
 \description{
-Warn when packages are loaded or unloaded
+Warn when packages are loaded/unloaded or attached/detached
 }
 \details{
 :

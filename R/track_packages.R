@@ -1,4 +1,4 @@
-#' Warn when packages are loaded or unloaded
+#' Warn when packages are loaded/unloaded or attached/detached
 #'
 #' @inheritParams track_envvars
 #'
@@ -14,12 +14,17 @@
 #'
 #' @export
 track_packages <- make_task_callback(name = "Packages tracker", local({
+  attachedPackages <- function() {
+    pkgs <- grep("^package:", search(), value = TRUE)
+    sub("^package:", "", pkgs)
+  }
+  
   startup <- TRUE
-  last <- loadedNamespaces()
+  last <- list(loaded = loadedNamespaces(), attached = attachedPackages())
   
   function(expr, value, ok, visible) {
     if (!isTRUE(getOption("tracker.packages", TRUE))) return(TRUE)
-    curr <- loadedNamespaces()
+    curr <- list(loaded = loadedNamespaces(), attached = attachedPackages())
 
     ## Avoid reporting on changes occuring during startup
     if (startup) {
@@ -29,9 +34,12 @@ track_packages <- make_task_callback(name = "Packages tracker", local({
 
     if (!identical(curr, last)) {
       diff <- list(
-        loaded   = sort(setdiff(curr, last)),
-        unloaded = sort(setdiff(last, curr))
+        attached = sort(setdiff(curr$attached, last$attached)),
+        detached = sort(setdiff(last$attached, curr$attached)),
+        loaded   = sort(setdiff(curr$loaded, last$loaded)),
+        unloaded = sort(setdiff(last$loaded, curr$loaded))
       )
+      
       diff <- vapply(names(diff), FUN = function(name) {
         vars <- diff[[name]]
         nvars <- length(vars)
@@ -40,8 +48,9 @@ track_packages <- make_task_callback(name = "Packages tracker", local({
                 nvars, if (nvars == 1) "" else "s", name,
                 paste(sQuote(vars), collapse = ", "))
       }, FUN.VALUE = NA_character_)
+      
       diff <- diff[!is.na(diff)]
-      msg <- paste(cli_prefix(), "loadedNamespaces() changed: ", diff, sep = " ")
+      msg <- paste(cli_prefix(), diff, sep = "")
       msg <- cli_blurred(msg)
       lapply(msg, FUN = message)
       last <<- curr

@@ -4,6 +4,9 @@
 
 * Add `track_gc()`, which report on changes in `base::gc.time()`.
 
+* Add `track_time()`, which report on changes in
+  `base::process.time()`.
+
 * Now `track_packages()` also report on changes in attached packages.
 
 

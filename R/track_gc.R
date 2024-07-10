@@ -26,9 +26,11 @@ track_gc <- make_task_callback(name = "Garbage collector tracker", local({
         names(dt) <- c("user", "system", "elapsed", "user_children", "system_children")
         dt <- dt[dt > 0]
         info <- paste(sprintf("%s=%gs", names(dt), dt), collapse = ", ")
-        msg <- sprintf("Garbage collector was run (%s)", info)
+        msg <- sprintf("Garbage collector: %s", info)
         note(msg)
       }
+      
+      current <- gc.time()
     }
     
     last <<- current

@@ -28,13 +28,13 @@ track_envvars <- make_task_callback(name = "Environment variables tracker", loca
       ## Environment variables added?
       changed <- setdiff(names, names_last)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Environment variables added: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Environment variables added: [n=%d] %s", length(changed), paste(sQuote(changed), collapse = ", ")))
       }
       
       ## Environment variables removed?
       changed <- setdiff(names_last, names)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Environment variables removed: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Environment variables removed: [n=%d] %s", length(changed), paste(sQuote(changed), collapse = ", ")))
       }
       
       ## Environment variables changed?
@@ -47,7 +47,7 @@ track_envvars <- make_task_callback(name = "Environment variables tracker", loca
       }
       changed <- changed[nzchar(changed)]
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Environment variables changed: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Environment variables changed: [n=%d] %s", length(changed), paste(sQuote(changed), collapse = ", ")))
       }
       
       if (length(msg) > 0L) {

@@ -26,12 +26,12 @@ trace_rm <- function(action = c("error", "warning"), enable = TRUE) {
   if (enable) {
     expr_action <- if (action == "error") {
       quote({
-        msg <- sprintf("%s; it was prevented from taking place.", msg)
+        msg <- sprintf("%s; it was prevented from taking place", msg)
         stop(msg, call. = FALSE)
       })
     } else {
       quote({
-        msg <- sprintf("%s; it is never a good idea to call rm() this way.", msg)
+        msg <- sprintf("%s; it is never a good idea to call rm() this way", msg)
         warning(msg, call. = FALSE, immediate. = TRUE)
       })
     }

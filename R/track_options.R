@@ -46,13 +46,13 @@ track_options <- make_task_callback(name = "Options tracker", local({
       ## Options added?
       changed <- setdiff(names, names_last)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Options added: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Options added: [n=%d] %s", length(changed), paste(sQuote(changed), collapse = ", ")))
       }
       
       ## Options removed?
       changed <- setdiff(names_last, names)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Options removed: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Options removed: [n=%d] %s", length(changed), paste(sQuote(changed), collapse = ", ")))
       }
       
       ## Options changed?
@@ -65,7 +65,7 @@ track_options <- make_task_callback(name = "Options tracker", local({
       }
       changed <- changed[nzchar(changed)]
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Options changed: [n=%d] %s.", length(changed), paste(sQuote(changed), collapse = ", ")))
+        msg <- c(msg, sprintf("Options changed: [n=%d] %s", length(changed), paste(sQuote(changed), collapse = ", ")))
       }
       if (length(msg) > 0L) {
         note(paste(msg, collapse = " "))

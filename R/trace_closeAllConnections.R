@@ -43,12 +43,12 @@ trace_closeAllConnections <- function(action = c("error", "warning"), allow = li
   if (enable) {
     expr_action <- if (action == "error") {
       quote({
-        msg <- sprintf("%s. However, it was prevented from taking place.", msg)
+        msg <- sprintf("%s. However, it was prevented from taking place", msg)
         stop(msg, call. = TRUE)
       })
     } else {
       quote({
-        msg <- sprintf("%s. Please not that it is never a good idea to call this function.", msg)
+        msg <- sprintf("%s. Please not that it is never a good idea to call this function", msg)
         warning(msg, call. = TRUE, immediate. = TRUE)
       })
     }

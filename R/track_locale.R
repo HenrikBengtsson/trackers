@@ -35,13 +35,13 @@ track_locale <- make_task_callback(name = "Locale tracker", local({
       ## Locale components added?
       changed <- setdiff(names, names_last)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Locale components added: [n=%d] %s.", length(changed), paste(sprintf("%s=%s", changed, sQuote(current[changed])), collapse = ", ")))
+        msg <- c(msg, sprintf("Locale components added: [n=%d] %s", length(changed), paste(sprintf("%s=%s", changed, sQuote(current[changed])), collapse = ", ")))
       }
       
       ## Locale components removed?
       changed <- setdiff(names_last, names)
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Locale components removed: [n=%d] %s.", length(changed), paste(sprintf("%s=%s", changed, sQuote(last[changed])), collapse = ", ")))
+        msg <- c(msg, sprintf("Locale components removed: [n=%d] %s", length(changed), paste(sprintf("%s=%s", changed, sQuote(last[changed])), collapse = ", ")))
       }
       
       ## Locale components changed?
@@ -54,7 +54,7 @@ track_locale <- make_task_callback(name = "Locale tracker", local({
       }
       changed <- changed[nzchar(changed)]
       if (length(changed) > 0L) {
-        msg <- c(msg, sprintf("Locale components changed: [n=%d] %s.", length(changed), paste(sprintf("%s=%s (was %s)", changed, sQuote(current[changed]), sQuote(last[changed])), collapse = ", ")))
+        msg <- c(msg, sprintf("Locale components changed: [n=%d] %s", length(changed), paste(sprintf("%s=%s (was %s)", changed, sQuote(current[changed]), sQuote(last[changed])), collapse = ", ")))
       }
       
       if (length(msg) > 0L) {

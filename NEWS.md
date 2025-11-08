@@ -1,3 +1,10 @@
+# Version 0.0.3-9000 (development version)
+
+## New Features
+
+* Add `trace_detectCores()` for tracking calls to `parallel::detectCores()`.
+
+
 # Version 0.0.3 [2024-07-10]
 
 ## New Features
